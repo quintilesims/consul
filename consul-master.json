@@ -25,6 +25,12 @@
       "essential": true,
       "image": "consul:latest",
       "memory": 1024,
+      "mountPoints": [
+        {
+          "sourceVolume": "consuldata",
+          "containerPath": "/consul/data"
+        }
+      ],
       "name": "consul-server",
       "networkMode": "host",
       "portMappings": [
@@ -58,6 +64,15 @@
           "containerPort": 8302,
           "hostPort": 8302,
           "protocol": "udp"
+        },
+        {
+          "containerPort": 8400,
+          "hostPort": 8400
+        },
+        {
+          "bindIP": "172.17.0.1",
+          "containerPort": 8600,
+          "hostPort": 53
         },
         {
           "bindIP": "172.17.0.1",
