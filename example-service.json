@@ -40,7 +40,7 @@
       "environment": [
         {
           "name": "EXTERNAL_URL",
-          "value": "replace with Consul's private loadbalancer URL"
+          "value": "Replace with Consul's private loadbalancer URL"
         },
         {
           "name": "CONSUL_ALLOW_PRIVILEGED_PORTS",
@@ -65,15 +65,6 @@
           "hostPort": 8500
         },
         {
-          "containerPort": 8300,
-          "hostPort": 8300
-        },
-        {
-          "containerPort": 8300,
-          "hostPort": 8300,
-          "protocol": "udp"
-        },
-        {
           "containerPort": 8301,
           "hostPort": 8301
         },
@@ -83,13 +74,9 @@
           "protocol": "udp"
         },
         {
-          "containerPort": 8302,
-          "hostPort": 8302
-        },
-        {
-          "containerPort": 8302,
-          "hostPort": 8302,
-          "protocol": "udp"
+          "bindIP": "172.17.0.1",
+          "containerPort": 8600,
+          "hostPort": 53
         },
         {
           "bindIP": "172.17.0.1",

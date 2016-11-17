@@ -40,7 +40,7 @@ For a practical applications of Consul, see our [Layer0 Consul Documentation](ht
 
 # Enabling a Service to use Consul
 
-In order to automatically register services with Consul, you need to add two extra containers to any given service: [Registrator](https://github.com/gliderlabs/registrator) and the Consul Agent. We've included a [base template](example-service.json) that you can use to do this, although it is recommended that you also read up on the [Consul Agent](https://www.consul.io/docs/agent/basics.html) as well. The general idea here is that the Registrator container takes care of detecting new Layer0 services and registering them with the Consul backend, while the Consul Agent is a localhost interface for performing HTTP and DNS queries. 
+In order to automatically register services with Consul, you need to add two extra containers to any given service: [Registrator](https://github.com/gliderlabs/registrator) and the Consul Agent. We've included a [base template](example-service.json) that you can use to do this, although it is recommended that you also read up on the [Consul Agent](https://www.consul.io/docs/agent/basics.html) as well. The general idea here is that the Registrator container takes care of detecting new Layer0 services and registering them with the Consul backend, while the Consul Agent is a localhost interface for performing Consul-based HTTP and DNS queries. 
 
 For additional examples of Layer0 services that use Consul:
 - [Guestbook with Consul](http://docs.xfra.ims.io/guides/guestbook_consul/)
