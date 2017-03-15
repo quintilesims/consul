@@ -17,7 +17,7 @@ For a practical applications of Consul, see our [Layer0 Consul Documentation](ht
  l0 environment create prod
 
  # create a private load balancer for bootstraping Consul
- l0 loadbalancer create prod consul-lb --port 8500:8500/tcp --port 8301:8301/tcp --private --wait
+ l0 loadbalancer create prod consul-lb --port 8500:8500/tcp --port 8301:8301/tcp --private --healthcheck-target "TCP:8500"
 
  # get the loadbalancer's URL; replace blank string @ line 18 of `consul-master.json`'s EXTERNAL_URL value
  l0 loadbalancer get consul-lb

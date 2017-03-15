@@ -15,7 +15,7 @@
         },
         {
           "name": "EXTERNAL_URL",
-          "value": "internal-l0-bivers0926-consull43eb1-1421006476.us-west-2.elb.amazonaws.com"
+          "value": "internal-l0-layer0instancename-consull18b85-1003257286.us-west-2.elb.amazonaws.com"
         },
         {
           "name": "UPSTREAM_DNS",
@@ -25,12 +25,6 @@
       "essential": true,
       "image": "consul:latest",
       "memory": 1024,
-      "mountPoints": [
-        {
-          "sourceVolume": "consuldata",
-          "containerPath": "/consul/data"
-        }
-      ],
       "name": "consul-server",
       "networkMode": "host",
       "portMappings": [
@@ -81,15 +75,6 @@
           "protocol": "udp"
         }
       ]
-    }
-  ],
-  "family": "consul-server",
-  "volumes": [
-    {
-      "host": {
-        "sourcePath": "/consul/data"
-      },
-      "name": "consuldata"
     }
   ]
 }
