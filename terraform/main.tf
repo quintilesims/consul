@@ -43,7 +43,7 @@ resource "layer0_deploy" "consul" {
 }
 
 data "template_file" "consul" {
-  template = "${file("${path.module}/../Server.Dockerrun.aws.json.template")}"
+  template = "${file("${path.module}/Server.Dockerrun.aws.json.template")}"
 
   vars {
     consul_server_url = "${layer0_load_balancer.consul.url}"

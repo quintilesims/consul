@@ -8,44 +8,18 @@ When you have multiple services in a Layer0 environment, how do you get them to 
 
 For a practical applications of Consul, see our [Layer0 Consul Documentation](http://docs.xfra.ims.io/guides/consul/).
 
-# Installation
-
-**NOTICE:** in order to install Consul, you must have [Layer0 v0.8.2](http://docs.xfra.ims.io/releases/) or greatest installed with the proper environment variables set from `l0-setup`. In the following instructions, we assume you will be installing Consul into a new Layer0 environment.
-
-```bash
- # create a new environment
- l0 environment create prod
-
- # create a private load balancer for bootstraping Consul
- l0 loadbalancer create prod consul-lb --port 8500:8500/tcp --port 8301:8301/tcp --private --healthcheck-target "TCP:8500"
-
- # get the loadbalancer's URL; replace blank string @ line 18 of `consul-master.json`'s EXTERNAL_URL value
- l0 loadbalancer get consul-lb
-
- # after editing consul-master.json, upload the Layer0 Consul deploy from this repository
- l0 deploy create consul-master.json consul-master
-
- # create the Consul service 
- l0 service create prod consul-master consul-master --loadbalancer consul-lb --wait
-
- # scale the Consul service to 3
- l0 service scale consul-master 3
-
- # wait until the service reads 3/3 under 'scale'
- l0 service get consul-master
-
- # if something goes wrong, you can troubleshoot the Consul service with `service logs` 
- l0 service logs consul-master
- ```
-
 # Enabling a Service to use Consul
 
-In order to automatically register services with Consul, you need to add two extra containers to any given service: [Registrator](https://github.com/gliderlabs/registrator) and the Consul Agent. We've included a [base template](example-service.json) that you can use to do this, although it is recommended that you also read up on the [Consul Agent](https://www.consul.io/docs/agent/basics.html) as well. The general idea here is that the Registrator container takes care of detecting new Layer0 services and registering them with the Consul backend, while the Consul Agent is a localhost interface for performing Consul-based HTTP and DNS queries. 
+In order to automatically register services with Consul, you need to add two extra containers to any given service: 
+[Registrator](https://github.com/gliderlabs/registrator) and the [Consul Agent](https://www.consul.io/docs/agent/basics.html). 
+The general idea here is that the Registrator container takes care of detecting new Layer0 services and registering them with the Consul backend, 
+while the Consul Agent is a localhost interface for performing Consul-based HTTP and DNS queries. 
 
-For additional examples of Layer0 services that use Consul:
-- [Guestbook with Consul](http://docs.xfra.ims.io/guides/guestbook_consul/)
-- [Splunk with Consul](https://gitlab.imshealth.com/tools/ImsHealth.Logging/tree/master/infrastructure/splunk-distributed)
+# Examples
+We have 2 walkthroughs in this repo that create a Consul server and a simple web application that registers itself with the Consul server:
+* The walkthrough using the Layer0 cli can be found [here](https://github.com/quintilesims/consul/tree/master/example/cli)
+* The walkthrough using Terraform can be found [here](https://github.com/quintilesims/consul/tree/master/example/terraform)
 
 # Troubleshooting
 
-Please get in touch in #xfra on Slack for any issues.
+Please get in touch in #xfra on Slack for any issues, or send an email to <carbon@us.imshealth.com>
