@@ -1,0 +1,6 @@
+{
+  "name": "dockersocket",
+  "host": {
+    "sourcePath": "/var/run/docker.sock"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "consul-server",
+      "image": "consul:latest",
+      "essential": true,
+      "memory": 1024,
+      "networkMode": "host",
+      "entrypoint": [
+        "/bin/sh",
+        "-c"
+      ],
+      "command": [
+        "consul agent -data-dir=/consul/data -client 0.0.0.0 -server -bootstrap-expect=3 -ui -recursor $UPSTREAM_DNS -advertise $(curl -s http://169.254.169.254/latest/meta-data/local-ipv4) -node $(curl -s http://169.254.169.254/latest/meta-data/local-hostname) -retry-join $CONSUL_SERVER_URL"
+      ],
+      "environment": [
+        {
+          "name": "CONSUL_ALLOW_PRIVILEGED_PORTS",
+          "value": ""
+        },
+        {
+          "name": "CONSUL_LOCAL_CONFIG",
+          "value": "{\"skip_leave_on_interrupt\":true}"
+        },
+        {
+          "name": "CONSUL_SERVER_URL",
+          "value": "${consul_server_url}"
+        },
+        {
+          "name": "UPSTREAM_DNS",
+          "value": "10.100.0.2"
+        }
+      ],
+      "portMappings": [
+        {
+          "containerPort": 8500,
+          "hostPort": 8500
+        },
+        {
+          "containerPort": 8300,
+          "hostPort": 8300
+        },
+        {
+          "containerPort": 8300,
+          "hostPort": 8300,
+          "protocol": "udp"
+        },
+        {
+          "containerPort": 8301,
+          "hostPort": 8301
+        },
+        {
+          "containerPort": 8301,
+          "hostPort": 8301,
+          "protocol": "udp"
+        },
+        {
+          "containerPort": 8302,
+          "hostPort": 8302
+        },
+        {
+          "containerPort": 8302,
+          "hostPort": 8302,
+          "protocol": "udp"
+        },
+        {
+          "containerPort": 8400,
+          "hostPort": 8400
+        },
+        {
+          "bindIP": "172.17.0.1",
+          "containerPort": 8600,
+          "hostPort": 53
+        },
+        {
+          "bindIP": "172.17.0.1",
+          "containerPort": 8600,
+          "hostPort": 53,
+          "protocol": "udp"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "registrator",
+  "image": "gliderlabs/registrator:latest",
+  "essential": true,
+  "memory": 128,
+  "entrypoint": [
+    "/bin/sh",
+    "-c"
+  ],
+  "command": [
+    "/bin/registrator -retry-attempts=-1 -retry-interval=10000 -ip $(wget http://169.254.169.254/latest/meta-data/local-ipv4 -q -O -) consul://consul-agent:8500"
+  ],
+  "dnsSearchDomains": [
+    "service.consul",
+    "node.consul"
+  ],
+  "dnsServers": [
+    "172.17.0.1",
+    "10.100.0.2"
+  ],
+  "links": [
+    "consul-agent"
+  ],
+  "mountPoints": [
+    {
+      "containerPath": "/tmp/docker.sock",
+      "sourceVolume": "dockersocket"
+    }
+  ]
+}
