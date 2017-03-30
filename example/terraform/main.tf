@@ -5,7 +5,7 @@ provider "layer0" {
 }
 
 module "consul" {
-  source         = "../consul/terraform"
+  source         = "github.com/quintilesims/consul/terraform"
   environment_id = "${layer0_environment.dev.id}"
 }
 
