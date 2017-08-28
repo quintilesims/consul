@@ -30,7 +30,6 @@ resource "layer0_service" "hello-world" {
   load_balancer = "${layer0_load_balancer.hello-world.id}"
   deploy        = "${layer0_deploy.hello-world.id}"
   scale         = 1
-  wait          = false
 }
 
 resource "layer0_deploy" "hello-world" {
