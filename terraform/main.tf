@@ -30,10 +30,9 @@ resource "layer0_service" "consul" {
   deploy        = "${layer0_deploy.consul.id}"
   load_balancer = "${layer0_load_balancer.consul.id}"
   scale         = 3
-  wait          = false
 
   provisioner "local-exec" {
-    command = "l0 service scale --wait ${layer0_service.consul.id} 1 && l0 service scale --wait ${layer0_service.consul.id} 3"
+    command = "l0 service scale --${layer0_service.consul.id} 1 && l0 service scale --wait ${layer0_service.consul.id} 3"
   }
 }
 
