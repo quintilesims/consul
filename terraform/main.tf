@@ -32,7 +32,7 @@ resource "layer0_service" "consul" {
   scale         = 3
 
   provisioner "local-exec" {
-    command = "l0 service scale --${layer0_service.consul.id} 1 && l0 service scale --wait ${layer0_service.consul.id} 3"
+    command = "l0 service scale --wait ${layer0_service.consul.id} 1 && l0 service scale --wait ${layer0_service.consul.id} 3"
   }
 }
 
