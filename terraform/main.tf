@@ -10,8 +10,20 @@ resource "layer0_load_balancer" "consul" {
   }
 
   port {
+    host_port      = 8300
+    container_port = 8300
+    protocol       = "tcp"
+  }
+
+  port {
     host_port      = 8301
     container_port = 8301
+    protocol       = "tcp"
+  }
+
+  port {
+    host_port      = 8302
+    container_port = 8302
     protocol       = "tcp"
   }
 
