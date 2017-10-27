@@ -54,7 +54,7 @@
     },
     {
       "name": "consul-agent",
-      "image": "consul:latest",
+      "image": "consul:0.9.3",
       "essential": true,
       "memory": 128,
       "entrypoint": [
