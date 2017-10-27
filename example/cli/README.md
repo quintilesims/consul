@@ -36,7 +36,7 @@ Rename the edited file to `Server.Dockerrun.aws.json`, and continue to create th
 l0 deploy create Server.Dockerrun.aws.json consul-server
  
 # create the consul service 
-l0 service create --wait --loadbalancer dev:consul-lb dev consul-server consul-server:latest
+l0 service create --wait --loadbalancer dev:consul-lb dev consul-server consul-server:0.9.3
 
 # scale the consul server to size 3
 l0 service scale --wait dev:consul-server 3
