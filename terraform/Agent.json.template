@@ -1,6 +1,6 @@
 {
   "name": "consul-agent",
-  "image": "${consul_version}",
+  "image": "consul:${consul_version}",
   "essential": true,
   "memory": 128,
   "entrypoint": [

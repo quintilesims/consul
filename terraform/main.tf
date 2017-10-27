@@ -58,7 +58,7 @@ data "template_file" "consul" {
 
   vars {
     consul_server_url = "${layer0_load_balancer.consul.url}"
-    consul_version = "${var.consul_version}"
+    consul_version    = "${var.consul_version}"
   }
 }
 
@@ -67,7 +67,7 @@ data "template_file" "agent_container" {
 
   vars {
     consul_server_url = "${layer0_load_balancer.consul.url}"
-    consul_version = "${var.consul_version}"
+    consul_version    = "${var.consul_version}"
   }
 }
 

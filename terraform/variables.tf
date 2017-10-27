@@ -19,5 +19,5 @@ variable "deploy_name" {
 
 variable "consul_version" {
   description = "Dockerhub Consul Version"
-  default     = "consul:0.9.3"
+  default     = "0.9.3"
 }
