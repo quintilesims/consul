@@ -16,3 +16,8 @@ variable "deploy_name" {
   description = "Name of the Layer0 deploy to create"
   default     = "consul-server"
 }
+
+variable "consul_version" {
+  description = "Dockerhub Consul Version"
+  default     = "consul:0.9.3"
+}

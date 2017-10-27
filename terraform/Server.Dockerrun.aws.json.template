@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "consul-server",
-      "image": "consul:0.9.3",
+      "image": "${consul_version}",
       "essential": true,
       "memory": 1024,
       "networkMode": "host",

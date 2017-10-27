@@ -1,6 +1,6 @@
 {
   "name": "registrator",
-  "image": "gliderlabs/registrator:0.9.3",
+  "image": "gliderlabs/registrator:latest",
   "essential": true,
   "memory": 128,
   "entrypoint": [
