@@ -57,7 +57,7 @@ data "template_file" "consul" {
   template = "${file("${path.module}/Server.Dockerrun.aws.json.template")}"
 
   vars {
-    aws_auto_join_tag = "${layer0_service.consul.id}"
+    aws_auto_join_tag = "${var.environment_id}"
     consul_server_url = "${layer0_load_balancer.consul.url}"
     consul_version    = "${var.consul_version}"
   }
@@ -67,7 +67,7 @@ data "template_file" "agent_container" {
   template = "${file("${path.module}/Agent.json.template")}"
 
   vars {
-    aws_auto_join_tag = "${layer0_service.consul.id}"
+    aws_auto_join_tag = "${var.environment_id}"
     consul_server_url = "${layer0_load_balancer.consul.url}"
     consul_version    = "${var.consul_version}"
   }
