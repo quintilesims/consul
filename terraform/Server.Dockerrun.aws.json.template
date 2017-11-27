@@ -12,7 +12,7 @@
         "-c"
       ],
       "command": [
-        "consul agent -data-dir=/consul/data -client 0.0.0.0 -server -bootstrap-expect=3 -ui -recursor $UPSTREAM_DNS -advertise $(curl -s http://169.254.169.254/latest/meta-data/local-ipv4) -node $(curl -s http://169.254.169.254/latest/meta-data/local-hostname) -retry-join 'provider=aws tag_key=Name tag_value=${aws_auto_join_tag}'"
+        "consul agent -data-dir=/consul/data -client 0.0.0.0 -server -bootstrap-expect=3 -ui -recursor $UPSTREAM_DNS -advertise $(curl -s http://169.254.169.254/latest/meta-data/local-ipv4) -node $(curl -s http://169.254.169.254/latest/meta-data/local-hostname) -retry-join 'provider=aws tag_key=Name tag_value=l0-${layer0_name}-${aws_auto_join_tag}'"
       ],
       "environment": [
         {
