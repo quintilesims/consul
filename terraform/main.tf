@@ -53,6 +53,8 @@ resource "layer0_deploy" "consul" {
   content = "${data.template_file.consul.rendered}"
 }
 
+data "layer0_api" "config" {}
+
 data "template_file" "consul" {
   template = "${file("${path.module}/Server.Dockerrun.aws.json.template")}"
 
