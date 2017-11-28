@@ -1,12 +1,12 @@
 {
   "AWSEBDockerrunVersion": 2,
+  "networkMode": "host",
   "containerDefinitions": [
     {
       "name": "consul-server",
       "image": "consul:${consul_version}",
       "essential": true,
       "memory": 1024,
-      "networkMode": "host",
       "entrypoint": [
         "/bin/sh",
         "-c"
