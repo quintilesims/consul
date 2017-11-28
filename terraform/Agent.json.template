@@ -8,7 +8,7 @@
     "-c"
   ],
   "command": [
-    "export JIP=$(wget -qO- 169.254.169.254/latest/meta-data/local-ipv4); export JNODE=$(wget -qO- 169.254.169.254/latest/meta-data/local-hostname); consul agent -data-dir=/consul/data -client 0.0.0.0 -recursor 10.100.0.2 -advertise $JIP -node $JNODE -retry-join 'provider=aws tag_key="Name" tag_value=l0-${layer0_prefix}-${aws_auto_join_tag}'"
+    "export JIP=$(wget -qO- 169.254.169.254/latest/meta-data/local-ipv4); export JNODE=$(wget -qO- 169.254.169.254/latest/meta-data/local-hostname); consul agent -data-dir=/consul/data -client 0.0.0.0 -dns-port 53 -recursor 10.100.0.2 -advertise $JIP -node $JNODE -retry-join 'provider=aws tag_key="Name" tag_value=l0-${layer0_prefix}-${aws_auto_join_tag}'"
   ],
   "dnsSearchDomains": [
     "service.consul",
@@ -61,12 +61,12 @@
     },
     {
       "bindIP": "172.17.0.1",
-      "containerPort": 8600,
+      "containerPort": 53,
       "hostPort": 53
     },
     {
       "bindIP": "172.17.0.1",
-      "containerPort": 8600,
+      "containerPort": 53,
       "hostPort": 53,
       "protocol": "udp"
     }
