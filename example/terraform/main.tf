@@ -5,12 +5,13 @@ provider "layer0" {
 }
 
 module "consul" {
-  source         = "github.com/quintilesims/consul//terraform?ref=v1.0.1"
+  source         = "../../terraform"
   environment_id = "${layer0_environment.dev.id}"
 }
 
 resource "layer0_environment" "dev" {
   name = "dev"
+  ami = "ami-f5fc2c8d"
 }
 
 resource "layer0_load_balancer" "hello-world" {
