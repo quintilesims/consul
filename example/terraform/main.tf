@@ -6,12 +6,25 @@ provider "layer0" {
 
 module "consul" {
   source         = "../../terraform"
-  environment_id = "${layer0_environment.dev.id}"
+  environment_id = "${layer0_environment.consul.id}"
+}
+
+resource "layer0_environment" "consul" {
+  name = "consul"
+  // TODO: Remove hardcoded AMI
+  ami = "ami-f5fc2c8d"
+  min_count = 3
 }
 
 resource "layer0_environment" "dev" {
-  name = "HelloWorldExample"
+  name = "dev"
+  // TODO: Remove hardcoded AMI
   ami = "ami-f5fc2c8d"
+}
+
+resource "layer0_environment_link" "consul_link" {
+  source = "${layer0_environment.dev.id}"
+  dest   = "${layer0_environment.consul.id}"
 }
 
 resource "layer0_load_balancer" "hello-world" {
