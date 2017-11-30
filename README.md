@@ -4,15 +4,13 @@ Consul is a service discovery tool created by [HashiCorp](https://www.consul.io/
 
 # Overview
 
-When you have multiple services in a Layer0 environment, how do you get them to connect to each other? One simple answer is that you hardcode service endpoints (i.e. a Loadbalancer URL) in your application configurations. That may be OK for testing, but ultimately hardcoding endpoints is not portable, annoying to maintain, and not in line with the [guidelines of a 12-factor app](https://12factor.net/). A much better solution is to use a service like Consul, which along with another tool called Registrator, can automatically detect your services when they come online and add them to a service registry. You can then 'discover' these services using catalog endpoints via [DNS](https://www.consul.io/docs/agent/dns.html) or [HTTP](https://www.consul.io/docs/agent/http.html).
-
 For a practical applications of Consul, see our [Layer0 Consul Documentation](http://docs.xfra.ims.io/guides/consul/).
 
 # Enabling a Service to use Consul
 
 In order to automatically register services with Consul, you need to add two extra containers to any given service: 
 [Registrator](https://github.com/gliderlabs/registrator) and the [Consul Agent](https://www.consul.io/docs/agent/basics.html). 
-The general idea here is that the Registrator container takes care of detecting new Layer0 services and registering them with the Consul backend, 
+The Registrator container takes care of detecting new Layer0 services and registering them with the Consul backend, 
 while the Consul Agent is a localhost interface for performing Consul-based HTTP and DNS queries. 
 
 # Examples
@@ -22,4 +20,10 @@ We have 2 walkthroughs in this repo that create a Consul server and a simple web
 
 # Troubleshooting
 
-Please send an email to <carbon@us.imshealth.com> with any issues.
+## Outage Recovery
+
+If a Consul server cluster node goes down, some manual intervention is typically required. The following docs have a good step-by-step of what to do:
+
+- [https://www.consul.io/docs/guides/outage.html](https://www.consul.io/docs/guides/outage.html)
+- [https://sitano.github.io/2015/10/06/abt-consul-outage/](https://sitano.github.io/2015/10/06/abt-consul-outage/)
+- If a former cluster member is continually triggering `serf: attempting reconnect to _nodename_` messages, you can remove it. First, inspect Consul cluster logs and issue `consul force-leave nodename` within one of the cluster node containers. Use the nodename specified in the logs (i.e. ip-10-100-3-34.dc1)

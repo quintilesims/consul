@@ -28,11 +28,11 @@ resource "layer0_load_balancer" "consul" {
   }
 
   health_check {
-    target              = "tcp:8500"
+    target              = "HTTP:8500/ui/"
     interval            = 30
     timeout             = 5
     healthy_threshold   = 2
-    unhealthy_threshold = 2
+    unhealthy_threshold = 5
   }
 }
 

@@ -28,10 +28,6 @@
     {
       "name": "CONSUL_ALLOW_PRIVILEGED_PORTS",
       "value": ""
-    },
-    {
-      "name": "UPSTREAM_DNS",
-      "value": "10.100.0.2"
     }
   ],
   "portMappings": [

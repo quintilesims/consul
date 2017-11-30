@@ -10,7 +10,7 @@ module "consul" {
 }
 
 resource "layer0_environment" "dev" {
-  name = "dev"
+  name = "HelloWorldExample"
   ami = "ami-f5fc2c8d"
 }
 

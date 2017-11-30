@@ -1,6 +1,14 @@
 {
   "AWSEBDockerrunVersion": 2,
   "networkMode": "host",
+  "volumes": [
+    {
+      "name": "consul_data_dir",
+      "host": {
+        "sourcePath": "/consul/data"
+      }
+    }
+  ],
   "containerDefinitions": [
     {
       "name": "consul-server",
@@ -21,12 +29,12 @@
           "value": ""
         },
         {
-          "name": "CONSUL_SERVER_URL",
-          "value": "${consul_server_url}"
+          "name": "CONSUL_LOCAL_CONFIG",
+          "value": "{\"leave_on_terminate\": true}"
         },
         {
-          "name": "UPSTREAM_DNS",
-          "value": "10.100.0.2"
+          "name": "CONSUL_SERVER_URL",
+          "value": "${consul_server_url}"
         }
       ],
       "portMappings": [
@@ -73,6 +81,12 @@
           "containerPort": 53,
           "hostPort": 53,
           "protocol": "udp"
+        }
+      ],
+      "mountPoints": [
+        {
+          "containerPath": "/consul/data",
+          "sourceVolume": "consul_data_dir"
         }
       ]
     }
