@@ -3,10 +3,10 @@
 This walkthrough will show you how to deploy a Consul server and a Hello World service that gets registered to the Consul server using the [Layer0 Terraform Plugin](http://layer0.ims.io/reference/terraform-plugin/). 
 It is assumed you are running all commands from this directory. 
 
-**NOTICE:** This walkthrough assumes you have [Layer0 v0.9.0](http://layer0.ims.io/releases/) and [Terraform v0.9.0](https://www.terraform.io/downloads.html) or greater installed.
+**NOTICE:** This walkthrough assumes you have [Layer0 v0.10.3](http://layer0.ims.io/releases/) and [Terraform v0.9.4](https://www.terraform.io/downloads.html) installed.
 
 ## The Consul Module
-This section will detail some of the terraform configuration found in this example.
+This section details some of the terraform configuration found in this example.
 To simply create everything, feel free to jump to the next section.
 
 The configuration in `terraform` directory in this repo holds a [Terraform Module](https://www.terraform.io/intro/getting-started/modules.html). 
@@ -18,10 +18,13 @@ To import the Layer0 Consul module, just add the following lines to your local t
 module "consul" {
   source         = "github.com/quintilesims/consul/terraform"
   environment_id = "<environment id here>"
+  ami = "ami-f5fc2c8d"
+  min_count = 3
 }
 ```
 
-This module will create a Consul deploy, service, and load balancer in the specified environment.
+This module will create a Consul deploy, service, and load balancer in the specified environment. The specified environment should be a unique environment that _only_ contains services for Consul. 
+
 The name for each of these entities is `consul-server`, but they can be overwitten with variables:
 ```
 module "consul" {
@@ -30,6 +33,8 @@ module "consul" {
   load_balancer_name = "my_consul_lb"
   service_name       = "my_consul_svc"
   deploy_name        = "my_consul_dpl"
+  ami = "ami-f5fc2c8d"
+  min_count = 3
 }
 ```
 

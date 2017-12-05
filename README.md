@@ -4,14 +4,16 @@ Consul is a service discovery tool created by [HashiCorp](https://www.consul.io/
 
 # Overview
 
-For a practical applications of Consul, see our [Layer0 Consul Documentation](http://docs.xfra.ims.io/guides/consul/).
+For practical applications of Consul, see our [Layer0 Consul Documentation](http://layer0.ims.io/reference/consul/).
 
 # Enabling a Service to use Consul
 
 In order to automatically register services with Consul, you need to add two extra containers to any given service: 
 [Registrator](https://github.com/gliderlabs/registrator) and the [Consul Agent](https://www.consul.io/docs/agent/basics.html). 
 The Registrator container takes care of detecting new Layer0 services and registering them with the Consul backend, 
-while the Consul Agent is a localhost interface for performing Consul-based HTTP and DNS queries. 
+while the Consul Agent is a localhost interface for performing Consul-based HTTP and DNS queries.
+
+We've included examples of how to add Registrator and Consul Agent to a given application as part of our our [Layer0 Consul Documentation](http://layer0.ims.io/reference/consul/).
 
 # Examples
 We have 2 walkthroughs in this repo that create a Consul server and a simple web application that registers itself with the Consul server:

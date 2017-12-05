@@ -41,6 +41,7 @@ resource "layer0_service" "consul" {
   environment   = "${var.environment_id}"
   deploy        = "${layer0_deploy.consul.id}"
   load_balancer = "${layer0_load_balancer.consul.id}"
+  size          = "t2.medium" // https://www.consul.io/docs/guides/performance.html#minimum-server-requirements
   scale         = 3
 
   provisioner "local-exec" {
